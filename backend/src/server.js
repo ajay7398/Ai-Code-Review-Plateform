@@ -2,6 +2,7 @@
 // Main entry point — sets up Express app, connects to DB, and starts the server
 
 import express from "express";
+import cors from "cors";
 import dotenv from "dotenv";
 import connectDB from "./config/db.js";
 import authRoutes from "./routes/authRoutes.js";
@@ -17,21 +18,17 @@ connectDB();
 const app = express();
 
 // ─── Middleware ───────────────────────────────────────────────────────────────
- // "http://localhost:5173",
+
 // Allow Cross-Origin requests (so our React frontend can talk to this server)
-// More explicit CORS setup — works better on Render
-app.use((req, res, next) => {
-  res.header("Access-Control-Allow-Origin", "https://codelens-app.netlify.app");
-  res.header("Access-Control-Allow-Credentials", "true");
-  res.header("Access-Control-Allow-Methods", "GET,POST,PUT,DELETE,OPTIONS");
-  res.header("Access-Control-Allow-Headers", "Origin,X-Requested-With,Content-Type,Accept,Authorization");
-  
-  // Handle preflight OPTIONS request
-  if (req.method === "OPTIONS") {
-    return res.sendStatus(200);
-  }
-  next();
-});
+app.use(
+  cors({
+    origin: [
+  "http://localhost:5173",
+  "https://codelens-app.netlify.app"
+], // Vite's default dev server port
+    credentials: true,
+  })
+);
 
 // Parse incoming JSON request bodies (so req.body works)
 app.use(express.json());
