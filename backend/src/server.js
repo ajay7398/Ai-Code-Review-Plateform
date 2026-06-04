@@ -22,7 +22,10 @@ const app = express();
 // Allow Cross-Origin requests (so our React frontend can talk to this server)
 app.use(
   cors({
-    origin: "http://localhost:5173", // Vite's default dev server port
+    origin: [
+  "http://localhost:5173",
+  "https://codelens-app.netlify.app"
+], // Vite's default dev server port
     credentials: true,
   })
 );
