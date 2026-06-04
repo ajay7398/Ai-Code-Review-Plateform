@@ -1,0 +1,54 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Syne:wght@400;500;600;700;800&display=swap');
+
+@import "tailwindcss";
+
+:root {
+  --bg-primary: #0a0a0f;
+  --bg-secondary: #111118;
+  --bg-card: #16161f;
+  --accent: #6c63ff;
+  --accent-light: #8b85ff;
+  --accent-glow: rgba(108, 99, 255, 0.15);
+  --green: #00d97e;
+  --red: #ff4d6d;
+  --yellow: #ffd166;
+  --orange: #ff9a3c;
+  --text-primary: #f0f0f8;
+  --text-secondary: #8888aa;
+  --border: rgba(255,255,255,0.07);
+}
+
+
+
+body {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: 'Syne', sans-serif;
+  min-height: 100vh;
+}
+
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg-secondary); }
+::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 3px; }
+
+.glow {
+  box-shadow: 0 0 30px var(--accent-glow), 0 0 60px rgba(108, 99, 255, 0.05);
+}
+
+.gradient-border {
+  position: relative;
+  background: var(--bg-card);
+  border-radius: 12px;
+}
+.gradient-border::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: 13px;
+  background: linear-gradient(135deg, rgba(108,99,255,0.5), rgba(0,217,126,0.3), rgba(108,99,255,0.1));
+  z-index: -1;
+}
+
+.font-code {
+  font-family: 'Space Mono', monospace;
+}
