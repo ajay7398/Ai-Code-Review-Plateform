@@ -16,30 +16,31 @@ export const AuthProvider = ({ children }) => {
   // On app load, check if there's already a saved token and load the user
   useEffect(() => {
     const initAuth = async () => {
-      const token = localStorage.getItem("token");
-      if (token) {
+     
         try {
-          const { data } = await authAPI.getProfile();
-          setUser(data);
+          setLoading(true);
+          const  data = await authAPI.getProfile();
+          const user=data.data.user;
+          setUser(user);
+          setLoading(false);
         } catch (error) {
           // Token is invalid or expired — clear it
-          localStorage.removeItem("token");
+          console.error("Failed to load user profile:", error);
+          setUser(null);
+          setLoading(false);
         }
       }
-      setLoading(false);
-    };
+     
     initAuth();
   }, []);
 
   // Login: save token to localStorage and set user in state
-  const login = (userData, token) => {
-    localStorage.setItem("token", token);
+  const login = (userData) => {
     setUser(userData);
   };
 
   // Logout: remove token and clear user from state
   const logout = () => {
-    localStorage.removeItem("token");
     setUser(null);
   };
 

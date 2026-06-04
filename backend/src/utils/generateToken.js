@@ -3,7 +3,7 @@
 
 import jwt from "jsonwebtoken";
 
-const generateToken = (userId) => {
+const generateToken = (userId,name,email) => {
   // Sign the token with:
   // - userId as the payload (what we store inside the token)
   // - JWT_SECRET as the key to sign it (kept secret on server)

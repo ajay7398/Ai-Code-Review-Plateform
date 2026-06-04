@@ -6,6 +6,7 @@ import {
   registerUser,
   loginUser,
   getUserProfile,
+  logoutUser,
 } from "../controllers/authController.js";
 import protect from "../middleware/authMiddleware.js";
 
@@ -16,7 +17,7 @@ router.post("/register", registerUser);
 
 // POST /api/auth/login → Login and get token
 router.post("/login", loginUser);
-
+router.post("/logout",logoutUser);
 // GET /api/auth/profile → Get current user info (protected)
 router.get("/profile", protect, getUserProfile);
 

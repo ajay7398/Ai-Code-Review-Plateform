@@ -34,7 +34,7 @@ const LoginPage = () => {
     try {
       const { data } = await authAPI.login(formData);
       // Save user and token to context
-      login({ _id: data._id, name: data.name, email: data.email }, data.token);
+      login({ _id: data._id, name: data.name, email: data.email });
       toast.success(`Welcome back, ${data.name}!`);
       navigate("/dashboard");
     } catch (err) {

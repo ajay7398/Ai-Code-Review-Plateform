@@ -5,13 +5,14 @@ import { Link, useNavigate, useLocation } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
 import { motion } from "framer-motion";
 import { Code2, LayoutDashboard, Plus, LogOut, User } from "lucide-react";
-
+import { authAPI } from "../../services/api";
 const Navbar = () => {
   const { user, logout, isAuthenticated } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
 
   const handleLogout = () => {
+    authAPI.logout();
     logout();
     navigate("/login");
   };

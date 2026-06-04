@@ -3,6 +3,7 @@
 
 import express from "express";
 import cors from "cors";
+import cookieParser from "cookie-parser";
 import dotenv from "dotenv";
 import connectDB from "./config/db.js";
 import authRoutes from "./routes/authRoutes.js";
@@ -21,10 +22,17 @@ const app = express();
 
 // Allow Cross-Origin requests (so our React frontend can talk to this server)
 app.use(
-  cors()
+  cors({
+    origin: [
+  "http://localhost:5173",
+  "https://codelens-app.netlify.app"
+], // Vite's default dev server port
+    credentials: true,
+  })
 );
 
 // Parse incoming JSON request bodies (so req.body works)
+app.use(cookieParser());
 app.use(express.json());
 
 // Parse URL-encoded bodies (for form submissions)

@@ -1,40 +1,34 @@
 // src/services/api.js
 // Central place for all API calls to the backend
-// Using axios for HTTP requests
+// Using axios for HTTP requests (COOKIE BASED AUTH)
 
 import axios from "axios";
 
 // Base URL for all API calls — matches backend server
-const API_BASE = import.meta.env.VITE_API_URL || "http://localhost:5000/api";
+const API_BASE =
+  import.meta.env.VITE_API_URL ||
+  "http://localhost:5000/api";
 
-// Create an axios instance with default settings
+// Create axios instance
 const api = axios.create({
   baseURL: API_BASE,
+  withCredentials: true, // ✅ REQUIRED for cookies
   headers: {
     "Content-Type": "application/json",
   },
 });
 
-// ─── Request Interceptor ──────────────────────────────────────────────────────
-// Automatically attach the JWT token to every request that needs auth
-api.interceptors.request.use((config) => {
-  // Get token from localStorage (where we store it after login)
-  const token = localStorage.getItem("token");
-  if (token) {
-    config.headers.Authorization = `Bearer ${token}`;
-  }
-  return config;
-});
 
-// ─── Auth API Calls ───────────────────────────────────────────────────────────
+// ─── Auth API Calls ─────────────────────────────────────────
 
 export const authAPI = {
   register: (data) => api.post("/auth/register", data),
   login: (data) => api.post("/auth/login", data),
+  logout: () => api.post("/auth/logout"), // optional but recommended
   getProfile: () => api.get("/auth/profile"),
 };
 
-// ─── Review API Calls ─────────────────────────────────────────────────────────
+// ─── Review API Calls ───────────────────────────────────────
 
 export const reviewAPI = {
   create: (data) => api.post("/reviews", data),
