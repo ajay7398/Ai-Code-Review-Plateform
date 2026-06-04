@@ -21,13 +21,28 @@ const app = express();
 // ─── Middleware ───────────────────────────────────────────────────────────────
 
 // Allow Cross-Origin requests (so our React frontend can talk to this server)
+// Allow Cross-Origin requests
 app.use(
   cors({
-    origin: [
-  "http://localhost:5173",
-  "https://codelens-app.netlify.app"
-], // Vite's default dev server port
+    origin: function(origin, callback) {
+      const allowedOrigins = [
+        "http://localhost:5173",
+        "https://codelens-app.netlify.app"
+      ];
+      
+      // Allow requests with no origin (like mobile apps or curl)
+      if (!origin) return callback(null, true);
+      
+      if (allowedOrigins.indexOf(origin) === -1) {
+        const msg = 'The CORS policy for this site does not allow access from the specified Origin.';
+        return callback(new Error(msg), false);
+      }
+      return callback(null, true);
+    },
     credentials: true,
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization', 'Cookie', 'X-Requested-With'],
+    exposedHeaders: ['Set-Cookie'],
   })
 );
 
