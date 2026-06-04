@@ -16,6 +16,7 @@ import NewReviewPage from "./pages/NewReviewPage";
 import ReviewDetailPage from "./pages/ReviewDetailPage";
 
 const App = () => {
+  console.log("API URL:", import.meta.env.VITE_API_URL);
   return (
     <AuthProvider>
       <BrowserRouter>
