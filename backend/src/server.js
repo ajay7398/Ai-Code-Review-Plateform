@@ -13,30 +13,10 @@ connectDB();
 
 const app = express();
 
-// CORS configuration - MUST BE FIRST
-const corsOptions = {
-  origin: function(origin, callback) {
-    const allowedOrigins = [
-      "http://localhost:5173",
-      "https://codelens-app.netlify.app"
-    ];
-    
-    if (!origin) return callback(null, true);
-    
-    if (allowedOrigins.indexOf(origin) !== -1) {
-      callback(null, true);
-    } else {
-      callback(new Error('Not allowed by CORS'));
-    }
-  },
-  credentials: true,
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-  allowedHeaders: ['Content-Type', 'Authorization', 'Cookie', 'X-Requested-With'],
-  exposedHeaders: ['Set-Cookie'],
-};
+
 
 // Apply CORS middleware
-app.use(cors(corsOptions));
+app.use(cors());
 
 
 
