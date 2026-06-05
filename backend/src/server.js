@@ -35,7 +35,7 @@ app.use(
 );
 
 // Handle preflight for ALL routes
-app.options("*", cors());
+app.options("(.*)", cors());
 
 app.use(cookieParser());
 app.use(express.json());
