@@ -31,7 +31,8 @@ Respond with ONLY a valid JSON object (no markdown, no extra text) in this exact
  
 Rules:
 - Be specific and actionable in your feedback
-- Limit issues to maximum 8 most important ones
+- Find ALL issues, minimum 3 and maximum 15 most important ones
+- More issues = lower score, fewer issues = higher score
 - Score 90-100: excellent, 70-89: good, 50-69: needs work, below 50: poor
 - If code is empty or too short, give score 0 and explain in summary`;
 };
