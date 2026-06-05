@@ -33,7 +33,14 @@ Rules:
 - Be specific and actionable in your feedback
 - Find ALL issues, minimum 3 and maximum 15 most important ones
 - More issues = lower score, fewer issues = higher score
-- Score 90-100: excellent, 70-89: good, 50-69: needs work, below 50: poor
+- Score 90-100: excellent code, very few or no issues
+- Score 70-89: good code, only minor issues like missing rate limiting or logging
+- Score 50-69: average code, has some real bugs or medium security issues
+- Score 30-49: poor code, has critical bugs or major security vulnerabilities
+- Score 0-29: very poor code, has multiple critical vulnerabilities like SQL injection, hardcoded secrets, no error handling
+- Be fair and realistic — code that uses bcrypt, JWT, input validation, env variables, error handling deserves 75+ even if minor issues exist
+- Do NOT penalize for using in-memory storage if no database is required
+- Do NOT give critical severity to env variables usage — that is the CORRECT approach
 - If code is empty or too short, give score 0 and explain in summary`;
 };
  
