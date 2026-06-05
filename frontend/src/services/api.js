@@ -6,8 +6,8 @@ import axios from "axios";
 
 // Base URL for all API calls — matches backend server
 const API_BASE = import.meta.env.DEV
-  ? "http://localhost:5000/api"   // Local development
-  : "/api";   
+  ? "http://localhost:5000/api"
+  : "https://ai-code-review-backend.onrender.com/api";
 
 // Create axios instance
 const api = axios.create({
