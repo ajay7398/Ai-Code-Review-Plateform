@@ -8,9 +8,9 @@ const protect = async (req, res, next) => {
   try {
     // Extract just the token part (remove "Bearer ")
     const token = req.cookies.token;
-    if (!token) {
-      res.status(401).json({ message: "Not authorized, no token" });
-    }
+  if (!token) {
+  return res.status(401).json({ message: "Not authorized, no token" });
+}
     // Verify the token using our secret key
     // If the token is invalid or expired, this will throw an error
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
